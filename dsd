@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Information about some astronomic objects:</h1>
+    <div class="main"></div>
+
+</body>
+<script>
+    let promise = fetch('https://go-apod.herokuapp.com/apod')
+    .then(answer =>{return answer.json()})
+    .then(json =>{
+        console.log(json)
+        let item = document.createElement('div')
+        item.innerHTML = `
+        <img src="${json.url}" alt="">
+        <p>${json.explanation}</p>
+        `
+        document.querySelector('.main').append(item)
+        })
+        
+</script>
+</html>
